@@ -21,12 +21,7 @@ $(document).ready(function () {
   });
 
 
-
-
-
-
 // Note To self: Template literals are used using backtics and on JQuery they start with $. For example ${example}
-
 
 
 $("#addButton").click(function () {
@@ -42,6 +37,17 @@ $("#addButton").click(function () {
     success: function (data) {
         console.log(data);
 
+
+        const platforms = data.results[4].platforms;
+        const esrb = data.results[4].esrb_rating.name_en;
+
+        const platformNames = [];
+
+        $.each(platforms, function (index, value) {
+          platformNames.push(" " + value.platform.name)
+          console.log(platformNames);
+        });
+
         
         // Create the main card div
         var cardDiv = $("<div>");
@@ -52,7 +58,7 @@ $("#addButton").click(function () {
         // Create the image div
         var imageDiv = $("<div>");
         imageDiv.append(
-          '<img class="w-full rounded-md over" src="https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/aqZdSwWyy9JcQ66BxHDKrky6.jpg" alt="" />'
+          `<img class="w-full rounded-md over" src="${data.results[4].background_image}" alt="" />`
         );
         cardDiv.append(imageDiv);
       
@@ -75,17 +81,15 @@ $("#addButton").click(function () {
           `<h2 class="font-bold text-2xl ">${data.results[4].name}</h4>`
         );
         descDiv.append(
-          '<h4 class="font-bold text-blue-400">Date Released: 11/9/22 </h4>'
+          `<h4 class="font-bold text-blue-400">Date Released: ${data.results[4].released} </h4>`
         );
         descDiv.append(
-          '<p> <span class="font-bold text-blue-400">Platforms:</span> PS5</p>'
+          `<p> <span class="font-bold text-blue-400">Platforms:</span> ${platformNames}</p>`
         );
         descDiv.append(
-          '<p> <span class="font-bold text-blue-400">Publisher:</span> Sony Interactive</p>'
+          `<p> <span class="font-bold text-blue-400">ESRB Rating:</span> ${esrb} </p>`
         );
-        descDiv.append(
-          '<p class=""> <span class="font-bold text-blue-400">About:</span> Kratos and Atreus must journey to each of the Nine Realms in search of answers as they prepare for the prophesied battle that will end the world.</p>'
-        );
+  
       
         cardDiv.append(descDiv);
       
