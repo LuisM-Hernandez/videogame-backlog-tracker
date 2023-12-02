@@ -5,7 +5,7 @@ $(document).ready(function () {
   const rawgURL = 'https://api.rawg.io/api/games';
 
   // Youtube API info
-  const youtubeKey = 'AIzaSyAx_UP8qG_QtPF1uwSkEyFd2oYlk42qDw0'
+  const youtubeKey = 'AIzaSyBU31o788ow1RXHUCrwyqV7w30WmLEkKF8'
   const youtubeURL = 'https://www.googleapis.com/youtube/v3/search';
 
   //variable holding youtube response data
@@ -26,7 +26,7 @@ $(document).ready(function () {
         },
         success: function(response) {
             // Handle the response, which contains the list of videos
-            console.log(response);
+            console.log("Esto es el response "+response);
             ytData =  "https://www.youtube.com/watch?v=" + response.items[0].id.videoId
         },
         error: function(error) {
@@ -92,7 +92,6 @@ $(document).ready(function () {
         // descDiv.append(
         //   `<p> <span class="font-bold text-blue-400">ESRB Rating:</span> ${esrb} </p>`
         // );
-        
         cardDiv.append(descDiv);
         
         // Create the button div
